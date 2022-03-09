@@ -24,7 +24,7 @@ import mg.ms.tpcustomerapplicationmiandrisoaasimbola.entities.Customer;
  * Gère la persistance des Customers.
  */
 @Stateless
-public class CustomManager {
+public class CustomerManager {
 
     @PersistenceContext(unitName = "customerPU")
     private EntityManager em;
