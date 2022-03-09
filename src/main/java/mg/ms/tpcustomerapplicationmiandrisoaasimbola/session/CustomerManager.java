@@ -5,18 +5,10 @@
 package mg.ms.tpcustomerapplicationmiandrisoaasimbola.session;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
 import mg.ms.tpcustomerapplicationmiandrisoaasimbola.entities.Customer;
 
 
@@ -28,18 +20,9 @@ public class CustomerManager {
 
     @PersistenceContext(unitName = "customerPU")
     private EntityManager em;
-    @Resource
-    private javax.transaction.UserTransaction utx;
-
+    
     public void persist(Customer customer) {
-        try {
-            utx.begin();
-            em.persist(customer);
-            utx.commit();
-        } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
-            throw new RuntimeException(e);
-        }
+        em.persist(customer);
     }
 
     /**
@@ -60,5 +43,5 @@ public class CustomerManager {
     public Customer update(Customer customer) {
        return em.merge(customer);
     }
-     
+
 }
