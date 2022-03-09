@@ -13,14 +13,14 @@
 
             <h:form>
                 <h1><h:outputText value="Liste des clients"/></h1>
-                <p:dataTable value="#{customerMBean.customers}" var="item">
+                <p:dataTable value="#{customerMBean.customers}" var="item" paginator="true" rows="10">
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="CustomerId"/>
                         </f:facet>
                         <h:outputText value="#{item.customerId}"/>
                     </p:column>
-                    <p:column>
+                    <p:column  sortBy="#{item.name}" filterBy="#{item.name}">
                         <f:facet name="header">
                             <h:outputText value="Name"/>
                         </f:facet>
@@ -38,13 +38,13 @@
                         </f:facet>
                         <h:outputText value="#{item.addressline2}"/>
                     </p:column>
-                    <p:column>
+                    <p:column  sortBy="#{item.city}">
                         <f:facet name="header">
                             <h:outputText value="City"/>
                         </f:facet>
                         <h:outputText value="#{item.city}"/>
                     </p:column>
-                    <p:column>
+                    <p:column  sortBy="#{item.state}" filterBy="#{item.state}">
                         <f:facet name="header">
                             <h:outputText value="State"/>
                         </f:facet>
